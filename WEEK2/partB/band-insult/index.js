@@ -15,14 +15,15 @@ var insults_dict = {
   4: "plain, unoriginal and overrated"
 };
 
-
 app.get('/', function(req, res){
-    var myText = req.query.mytext; //mytext is the name of your input box
-    if (myText === undefined){
+
       res.sendFile(path.join(__dirname + '/index.html'))
-    }else{
-        res.send('the band ' + myText + ' is so ' + insults_dict[Math.floor(Math.random(insults_dict)*4)]);
-    }
+
+});
+
+app.post('/', function(req, res){
+    var myText = req.body.mytext;
+    res.send('the band ' + myText + ' is so ' + insults_dict[Math.floor(Math.random(insults_dict)*4)]);
 });
 
 app.listen(3000, function() {
